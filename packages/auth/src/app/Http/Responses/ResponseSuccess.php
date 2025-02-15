@@ -1,0 +1,27 @@
+<?php
+
+namespace Packages\Auth\App\Http\Responses;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
+
+class ResponseSuccess extends JsonResponse
+{
+    /**
+     * Create a new ResponseSuccess instance.
+     *
+     * @param string $message
+     * @param \Illuminate\Http\Resources\Json\JsonResource $resource
+     */
+    public function __construct(string $message, JsonResource $resource)
+    {
+        parent::__construct(
+            data: [
+                "message" => $message,
+                "data" => $resource,
+            ],
+            status: Response::HTTP_OK,
+        );
+    }
+}

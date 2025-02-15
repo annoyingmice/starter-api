@@ -1,0 +1,81 @@
+networks:
+    pudtrip:
+
+services:
+    app:
+        build:
+            context: ./docker
+            dockerfile: Dockerfile.dev
+        container_name: pudtrip
+        working_dir: /var/www/html
+        depends_on:
+            - database
+        volumes:
+            - .:/var/www/html
+        environment:
+            APACHE_DOCUMENT_ROOT: /var/www/html/public
+            # REDIS
+            REDIS_CLIENT: phpredis
+            REDIS_HOST: redis
+            REDIS_PASSWORD: password
+            REDIS_PORT: 6379
+            # DATABASE
+            DB_CONNECTION: mysql
+            DB_HOST: database
+            DB_PORT: 3306
+            DB_DATABASE: pudtrip
+            DB_USERNAME: user
+            DB_PASSWORD: password
+        networks:
+            - pudtrip
+        ports:
+            - 80:80
+        deploy:
+            resources:
+                limits:
+                    cpus: "1"
+                    memory: "1G"
+    
+    # @NOTE: This will tunnel the services
+    ngrok:
+        image: ngrok/ngrok:latest
+        container_name: tunnel
+        command:
+            - "start"
+            - "--all"
+            - "--config"
+            - "/etc/ngrok.yml"
+        volumes:
+            - ./docker/ngrok.yml:/etc/ngrok.yml
+        ports:
+            - 4040:4040
+
+    # @NOTE: This is the database that all services should be using
+    database:
+        image: mysql:lts-oraclelinux9
+        container_name: database
+        volumes:
+            - ./docker/mysql:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: pudtrip
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+        ports:
+            - 3306:3306
+        networks:
+            - pudtrip
+
+    # @NOTE: This is the local storage caching
+    redis:
+        image: redis:latest
+        container_name: redis
+        volumes:
+            - ./docker/redis:/data
+        environment:
+            REDIS_HOST: redis
+            REDIS_PASSWORD: password
+        ports:
+            - 6379:6379
+        networks:
+            - pudtrip

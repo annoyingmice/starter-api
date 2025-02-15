@@ -1,0 +1,9 @@
+version: 2
+
+# @NOTE: Use your auth token from https://dashboard.ngrok.com/get-started/setup
+authtoken: YOUR_AUTH_TOKEN_HERE
+
+tunnels:
+  services:
+    proto: http
+    addr: http://host.docker.internal:80

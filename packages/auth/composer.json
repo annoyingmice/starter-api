@@ -1,0 +1,29 @@
+{
+    "name": "packages/auth",
+    "description": "Auth package for travelkit",
+    "type": "library",
+    "license": "MIT",
+    "authors": [],
+    "autoload": {
+        "psr-4": {
+            "Packages\\Auth\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.9",
+        "laravel/sanctum": "^4.0",
+        "spatie/laravel-sluggable": "^3.6",
+        "spatie/laravel-medialibrary": "^11.12",
+        "spatie/laravel-query-builder": "^6.3",
+         "spatie/laravel-permission": "^6.13"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Auth\\AuthServiceProvider"
+            ],
+            "dont-discover": []
+        }
+    }
+}
