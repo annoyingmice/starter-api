@@ -7,7 +7,7 @@ use Packages\User\App\DTOs\CreateUserDto;
 use Packages\User\App\Events\Registered;
 use Packages\User\App\Models\User;
 
-final class CreateUserAction
+final class StoreUserAction
 {
     public function __construct()
     {

@@ -36,6 +36,38 @@ services:
                     cpus: "1"
                     memory: "1G"
     
+    queue:
+        build:
+            context: ./docker/queue
+            dockerfile: Dockerfile.dev
+        container_name: queue
+        working_dir: /var/www/html
+        depends_on:
+            - database
+        volumes:
+            - .:/var/www/html
+        environment:
+            APACHE_DOCUMENT_ROOT: /var/www/html/public
+            # REDIS
+            REDIS_CLIENT: phpredis
+            REDIS_HOST: redis
+            REDIS_PASSWORD: password
+            REDIS_PORT: 6379
+            # DATABASE
+            DB_CONNECTION: mysql
+            DB_HOST: database
+            DB_PORT: 3306
+            DB_DATABASE: pudtrip
+            DB_USERNAME: user
+            DB_PASSWORD: password
+        networks:
+            - pudtrip
+        deploy:
+            resources:
+                limits:
+                    cpus: "1.0"
+                    memory: "1G"
+
     # @NOTE: This will tunnel the services
     ngrok:
         image: ngrok/ngrok:latest

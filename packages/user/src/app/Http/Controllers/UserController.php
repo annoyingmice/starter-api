@@ -4,7 +4,7 @@ namespace Packages\User\App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Packages\User\App\Actions\{
-    CreateUserAction,
+    StoreUserAction,
     DeleteUserAction,
     ListUsersAction,
     ShowUserAction,
@@ -42,12 +42,12 @@ class UserController extends Controller
     public function store(
         StoreUserRequest $request,
         User $user,
-        CreateUserAction $createUserAction
+        StoreUserAction $storeUserAction
     ) {
         return new ResponseCreated(
             message: "Resource created successfully",
             resource: new UserResource(
-                resource: $createUserAction->execute(
+                resource: $storeUserAction->execute(
                     user: $user,
                     dto: CreateUserDto::fromValidated(
                         data: $request->validated()

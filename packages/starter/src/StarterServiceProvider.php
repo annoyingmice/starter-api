@@ -20,9 +20,9 @@ class StarterServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $this->loadViewsFrom(__DIR__ . "/resources/views", "starter");
+        $this->loadViewsFrom(__DIR__ . "/resources/views", "starter");
 
-        // $this->mergeConfigFrom(__DIR__ . "/config/starter.php", "starter");
+        $this->mergeConfigFrom(__DIR__ . "/config/starter.php", "starter");
 
         // $this->publishes([
         //     __DIR__.'/config/starter.php' => config_path('packages_starter.php'),

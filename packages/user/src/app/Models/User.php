@@ -7,11 +7,13 @@ use Packages\User\App\Builders\UserBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Packages\Otp\App\Models\Otp;
+use Packages\Rider\App\Models\Rider;
 use Packages\User\App\Auth\Notifications\VerifyEmail;
 use Packages\User\App\Enums\UserStatus;
 use Packages\User\App\Traits\{HasOtp, ScopeUser};
@@ -59,6 +61,12 @@ class User extends Authenticatable implements MustVerifyEmail
             "password" => "hashed",
             "status" => UserStatus::class,
         ];
+    }
+
+    /** @return HasOne<Rider> */
+    public function rider(): HasOne
+    {
+        return $this->hasOne(Rider::class);
     }
 
     /**

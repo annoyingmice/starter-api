@@ -10,18 +10,16 @@ class Starter extends Model
 {
     use HasSlug, HasFactory;
 
-    protected $fillable = [
-        "slug",
-    ];
+    protected $fillable = ["slug"];
 
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(fn ($model) => "starter_$model->created_at")
-            ->saveSlugsTo('slug')
+            ->generateSlugsFrom(fn($model) => "starter_" . now())
+            ->saveSlugsTo("slug")
             ->preventOverwrite()
             ->doNotGenerateSlugsOnUpdate();
     }
@@ -33,6 +31,6 @@ class Starter extends Model
      */
     public function getRouteKeyName()
     {
-        return 'slug';
+        return "slug";
     }
 }
