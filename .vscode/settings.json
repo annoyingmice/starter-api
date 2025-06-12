@@ -14,7 +14,7 @@
           "source.fixAll": "always"
       },
       "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
       "files.insertFinalNewline": true,
       "files.trimTrailingWhitespace": true,
       "files.eol": "\n"

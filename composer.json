@@ -14,7 +14,6 @@
         "laravel/tinker": "^2.9",
         "packages/auth": "dev-main",
         "packages/otp": "dev-main",
-        "packages/rider": "dev-main",
         "packages/user": "dev-main"
     },
     "require-dev": {
@@ -83,10 +82,6 @@
         {
             "type": "path",
             "url": "./packages/otp"
-        },
-        {
-            "type": "path",
-            "url": "./packages/rider"
         },
         {
             "type": "composer",

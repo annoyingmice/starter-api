@@ -3,6 +3,7 @@
 namespace Packages\Auth;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,16 @@ class AuthServiceProvider extends ServiceProvider
             __DIR__.'/database/migrations' => database_path('migrations'),
         ]);
 
-        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+        $this->loadRoutesWithApiMiddleware();
+    }
+
+    /**
+     * Load package routes with the "api" middleware group.
+     */
+    protected function loadRoutesWithApiMiddleware(): void
+    {
+        Route::middleware("api")
+            ->prefix("api")
+            ->group(__DIR__ . "/routes/api.php");
     }
 }

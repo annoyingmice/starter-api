@@ -40,7 +40,8 @@ class StarterServiceProvider extends ServiceProvider
     */
     protected function loadRoutesWithApiMiddleware(): void
     {
-        Route::middleware('api')
-            ->group(__DIR__ . '/routes/api.php');
+        Route::middleware("api")
+            ->prefix("api")
+            ->group(__DIR__ . "/routes/api.php");
     }
 }

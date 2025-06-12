@@ -31,3 +31,8 @@ packages/rider
 supervisord.log
 supervisord.pid
 .DS_Store
+
+docker/mysql/*
+!docker/mysql/.gitkeep
+docker/redis/*
+!docker/redis/.gitkeep
