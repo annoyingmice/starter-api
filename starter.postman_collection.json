@@ -1,0 +1,457 @@
+{
+  "info": {
+    "_postman_id": "8a25fedd-a53e-4ad1-b8f3-1733deb95546",
+    "name": "starter",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "784687"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "login phone",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"country_code\": \"+63\",\n    \"phone\": \"9559331401\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/auth/login-phone",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "auth",
+                "login-phone"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login email & password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();",
+                  "",
+                  "pm.environment.set(\"token\", response.data.token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"johndoe@example.com\",\n    \"password\": \"admin123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/auth/credentials",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "auth",
+                "credentials"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/auth/logout",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "verify otp",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();",
+                  "",
+                  "pm.environment.set(\"token\", response.data.token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_slug\": \"user-2026-02-08-145520\",\n    \"code\": \"994608\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/auth/verify",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "auth",
+                "verify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "resend otp",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/auth/resend/user-2026-02-08-145520",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "auth",
+                "resend",
+                "user-2026-02-08-145520"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"phone\": {\n        \"country_code\": \"+63\",\n        \"number\": \"9559331401\",\n        \"primary\": true\n    },\n    \"email\": {\n        \"email\": \"johndoe@example.com\",\n        \"primary\": true\n    },\n    \"password\": \"admin123\",\n    \"password_confirmation\": \"admin123\",\n    // \"status\": \"active\"\n    \"address\": {\n        \"address_line_1\": \"Address Line 1\",\n        \"address_line_2\": \"Address Line 2\",\n        \"city\": \"City\",\n        \"state\": \"State\",\n        \"postal_code\": \"0000\",\n        \"country\": \"US\",\n        \"latitude\": \"00000.00\",\n        \"longitude\": \"-00000.01\",\n        \"primary\": true\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/auth/register",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Resend email verification link",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/email/verification-notification/user-2026-02-08-145520",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "email",
+                "verification-notification",
+                "user-2026-02-08-145520"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "get user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/users/user-2026-02-08-145520",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users",
+                "user-2026-02-08-145520"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete user",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/users/user-2026-02-08-145520",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users",
+                "user-2026-02-08-145520"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update user",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"phone\": {\n        \"country_code\": \"+63\",\n        \"number\": \"9559331401\",\n        \"primary\": true\n    },\n    \"email\": {\n        \"email\": \"johndoe@example.com\",\n        \"primary\": true\n    },\n    \"password\": \"admin123\",\n    \"password_confirmation\": \"admin123\",\n    \"status\": \"active\",\n    \"address\": {\n        \"address_line_1\": \"Address Line 1\",\n        \"address_line_2\": \"Address Line 2\",\n        \"city\": \"City\",\n        \"state\": \"State\",\n        \"postal_code\": \"0000\",\n        \"country\": \"US\",\n        \"latitude\": \"00000.00\",\n        \"longitude\": \"-00000.01\",\n        \"primary\": true\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/users/user-2026-02-08-145520",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users",
+                "user-2026-02-08-145520"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "health check application status",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost/up",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "up"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          "pm.request.headers.add({key: \"Content-Type\", value: \"application/json\"})",
+          "pm.request.headers.add({key: \"Accept\", value: \"application/json\"})",
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
