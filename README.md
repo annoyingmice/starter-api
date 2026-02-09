@@ -19,6 +19,5 @@ docker compose stop
 
 #### Description
 This is the starter module to be use to create new project using DDD structure
-```
 
 For more infor about laravel package development, please refer [here](https://laravel.com/docs/11.x/packages).
